@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Factura</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body class="container mt-4">
+
+<h1>Factura N° <span th:text="${factura.id}"></span></h1>
+
+<p><strong>Cliente:</strong> <span th:text="${factura.cliente.nombre}"></span></p>
+<p><strong>Fecha:</strong> <span th:text="${factura.fecha}"></span></p>
+<hr/>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Producto</th>
+    <th>Cantidad</th>
+    <th>Precio Unitario</th>
+    <th>Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="d : ${factura.detalles}">
+    <td th:text="${d.producto.nombre}"></td>
+    <td th:text="${d.cantidad}"></td>
+    <td th:text="${d.precioUnitario}"></td>
+    <td th:text="${d.total}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<h4 class="text-end">Subtotal: S/ <span th:text="${factura.subtotal}"></span></h4>
+<h4 class="text-end">IGV (18%): S/ <span th:text="${factura.igv}"></span></h4>
+<h3 class="text-end">TOTAL: S/ <span th:text="${factura.total}"></span></h3>
+
+<a href="/facturas" class="btn btn-secondary mt-3">← Volver</a>
+
+</body>
+</html>
